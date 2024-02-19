@@ -36,9 +36,10 @@ jobs:
           java-version: '${{ matrix.java }}'
 
       - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install build-essential debhelper devscripts equivs -y
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: build-essential debhelper devscripts equivs
+          version: 1.0
 
       - name: Install package build dependencies
         run: |
