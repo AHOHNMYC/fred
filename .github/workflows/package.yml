@@ -38,13 +38,11 @@ jobs:
       - name: Install dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: build-essential debhelper devscripts equivs ca-certificates-java default-jdk git-buildpackage javahelper libpcsclite1 quilt service-wrapper
+          packages: build-essential debhelper devscripts equivs
           version: 1.0
 
       - name: Install package build dependencies
-        run: |
-          install_tool="apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes"
-          sudo mk-build-deps --install -r --tool="${install_tool}" debian/control
+        run: sudo sudo apt-get build-dep debian/control
 
       - name: Build package
         run: |
