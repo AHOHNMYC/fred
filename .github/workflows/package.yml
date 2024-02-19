@@ -51,6 +51,9 @@ jobs:
 
       - name: List cache
         run: |
+          ls -la .
+          ls -la ..
+          ls -la ~/
           ls -la ~/.gradle
           ls -la ~/.gradle/caches
           ls -la ~/.gradle/wrapper
