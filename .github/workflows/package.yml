@@ -10,11 +10,11 @@ jobs:
   build-deb:
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        os: [ubuntu-latest]
         distribution: [temurin]
         java: [17]
 
-    runs-on: ubuntu-latest
+    runs-on: '${{ matrix.os }}'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,7 +22,12 @@ jobs:
       - name: Wrapper validation
         uses: gradle/wrapper-validation-action@v2
 
-      - name: Setup java
+      - name: Fix Java cache
+        run: |
+          mkdir ~/.gradle
+          ls -s ~/.gradle .gradle
+
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           cache: 'gradle'
@@ -48,15 +53,6 @@ jobs:
           dpkg -I ../freenet*.deb
           file ../freenet*.deb
           cp ../freenet*.deb ./
-
-      - name: List cache
-        run: |
-          ls -la .
-          ls -la ..
-          ls -la ~/
-          ls -la ~/.gradle
-          ls -la ~/.gradle/caches
-          ls -la ~/.gradle/wrapper
 
       - name: Provide Debian Package
         uses: actions/upload-artifact@v4
