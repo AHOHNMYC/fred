@@ -22,10 +22,6 @@ jobs:
       - name: Wrapper validation
         uses: gradle/wrapper-validation-action@v2
 
-      - name: Fix Java cache
-        run: |
-          ln -s `pwd`/.gradle ~/.gradle
-
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -55,23 +51,12 @@ jobs:
 
       - name: List Java cache
         run: |
-          pwd
-          echo .
-          ls -laZ . || true
-          echo ..
-          ls -laZ .. || true
-          echo ~/.gradle
-          ls -laZ ~/.gradle || true
-          echo ~/.gradle/cache
-          ls -laZ ~/.gradle/cache || true
-          echo ~/.gradle/wrapper
-          ls -laZ ~/.gradle/wrapper || true
-          echo .gradle
-          sudo ls -laZ .gradle || true
-          echo .gradle/cache
-          sudo ls -laZ .gradle/cache || true
-          echo .gradle/wrapper
-          sudo ls -laZ .gradle/wrapper || true
+          echo /tmp/fred-build
+          sudo ls -laZ /tmp/fred-build || true
+          echo /tmp/fred-build/gradle
+          sudo ls -laZ /tmp/fred-build/gradle || true
+          echo /tmp/fred-build/.gradle
+          sudo ls -laZ /tmp/fred-build/.gradle || true
 
       - name: Provide Debian Package
         uses: actions/upload-artifact@v4
