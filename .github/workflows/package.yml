@@ -22,6 +22,11 @@ jobs:
       - name: Wrapper validation
         uses: gradle/wrapper-validation-action@v2
 
+      - name: Fix 'Setup Java' action Gradle caching
+        run: |
+          sudo mkdir -p /tmp/fred-build/gradle
+          sudo ln -s /tmp/fred-build/gradle ~/.gradle
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -48,15 +53,6 @@ jobs:
           dpkg -I ../freenet*.deb
           file ../freenet*.deb
           cp ../freenet*.deb ./
-
-      - name: List Java cache
-        run: |
-          echo /tmp/fred-build
-          sudo ls -laZ /tmp/fred-build || true
-          echo /tmp/fred-build/gradle
-          sudo ls -laZ /tmp/fred-build/gradle || true
-          echo /tmp/fred-build/.gradle
-          sudo ls -laZ /tmp/fred-build/.gradle || true
 
       - name: Provide Debian Package
         uses: actions/upload-artifact@v4
