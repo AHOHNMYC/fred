@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: build-essential debhelper devscripts equivs
+          packages: build-essential debhelper devscripts equivs ca-certificates-java default-jdk git-buildpackage javahelper libpcsclite1 quilt service-wrapper
           version: 1.0
 
       - name: Install package build dependencies
