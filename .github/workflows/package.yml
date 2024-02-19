@@ -25,7 +25,7 @@ jobs:
       - name: Fix Java cache
         run: |
           mkdir ~/.gradle
-          ls -s ~/.gradle .gradle
+          ln -s ~/.gradle .gradle
 
       - name: Setup Java
         uses: actions/setup-java@v4
