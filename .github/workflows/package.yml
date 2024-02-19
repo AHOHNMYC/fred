@@ -1,7 +1,7 @@
 name: Build debian package
 on:
   push:
-    branches: [ 'master', 'next', 'debian-package' ]
+    branches: [ 'master', 'next', 'debian-package', 'test-ci' ]
     tags:
       - build**
       - testing-**
