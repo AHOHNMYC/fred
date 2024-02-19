@@ -24,10 +24,7 @@ jobs:
 
       - name: Fix Java cache
         run: |
-          sudo mkdir ~/.gradle
-          ln -s ~/.gradle .gradle
-          sudo chown runner:docker ~/.gradle .gradle
-          sudo chmod 0755 ~/.gradle .gradle
+          ln -s .gradle ~/.gradle
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -69,6 +66,10 @@ jobs:
           ls -laZ ~/.gradle/cache || true
           echo ~/.gradle/wrapper
           ls -laZ ~/.gradle/wrapper || true
+          echo .gradle/cache
+          ls -laZ .gradle/cache || true
+          echo .gradle/wrapper
+          ls -laZ .gradle/wrapper || true
 
       - name: Provide Debian Package
         uses: actions/upload-artifact@v4
