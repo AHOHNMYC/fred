@@ -22,6 +22,9 @@ jobs:
       - name: Wrapper validation
         uses: gradle/wrapper-validation-action@v2
 
+      - name: Speedup dpkg
+        run: sudo sh -c "echo 'force-unsafe-io' > /etc/dpkg/dpkg.cfg.d/force-unsafe-io"
+
       - name: Fix 'Setup Java' action Gradle caching
         run: |
           sudo mkdir -p /tmp/fred-build/gradle
