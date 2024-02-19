@@ -26,6 +26,7 @@ jobs:
         run: |
           sudo mkdir -p /tmp/fred-build/gradle
           sudo ln -s /tmp/fred-build/gradle ~/.gradle
+          sudo chmod o+rwx ~/.gradle
 
       - name: Setup Java
         uses: actions/setup-java@v4
